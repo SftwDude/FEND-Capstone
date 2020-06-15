@@ -1,0 +1,52 @@
+/* Style the header */
+header {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid red;
+  }
+  
+  footer {
+    grid-area: footer;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid blue;
+  }
+
+  menu {
+      grid-area: menu;
+      border: 1px solid green;
+  }
+  main {
+      grid-area: main;
+      border: 1px solid greenyellow;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'lt lt main main main main'
+      'lt lt main main main main'
+      'menu menu main main main main'
+      'menu menu footer footer footer footer';
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  
+  /*
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+*/
+  .img-1 {
+      grid-area: lt;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid purple;
+  }
