@@ -6,7 +6,6 @@ function handleSubmit(event) {
     let departureDate = document.getElementById('dateDeparture').value;
     let returnDate = document.getElementById('dateReturn').value;
 
-    //Calculate the numbers of days until departure
     const today = new Date();
     const futureDeparture = new Date(departureDate);
     const futureReturn = new Date(returnDate);
@@ -21,8 +20,9 @@ function handleSubmit(event) {
         return;
     }
 
+    //Calculate the numbers of days until departure and duration of the trip
     const daysUntilDeparture = Math.ceil((futureDeparture.getTime() - today.getTime()) / (1000 * 3600 * 24));
-    const tripDuration = Math.ceil((futureReturn.getTime() - futureDeparture.getTime()) / (1000 * 3600 * 24)) + 1;
+    const tripDuration = Math.ceil((futureReturn.getTime() - futureDeparture.getTime()) / (1000 * 3600 * 24));
     if (daysUntilDeparture < 1) {
         alert('Please pick a date in the future.');
         return;
@@ -39,7 +39,14 @@ function handleSubmit(event) {
             image.src = res.image;
             image.alt = location;
 
-            document.getElementById('results').innerHTML = `${tripDuration} day trip to ${location} is ${daysUntilDeparture} days until departure. 
+            const durationStr = (function IIFE(duration) {
+                if (duration == 0)
+                    return 'A day ';
+                else
+                    return `${tripDuration} day `
+            }(tripDuration));
+
+            document.getElementById('results').innerHTML = `${durationStr} trip to ${location} is ${daysUntilDeparture} days until departure. 
                                                            <br><br>Typical weather for then is: High: ${res.weatherData.max_temp} Low: ${res.weatherData.min_temp}`;
         })
 }
