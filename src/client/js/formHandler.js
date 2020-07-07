@@ -1,3 +1,5 @@
+import unknownLocationImage from '../media/where-2730754_1280.png'
+
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -36,7 +38,12 @@ function handleSubmit(event) {
         .then(res => res.json())
         .then(function (res) {
             let image = document.getElementById('destImage');
-            image.src = res.image;
+            if (res.image) {
+                image.src = res.image;
+            }
+            else {
+                image.src = unknownLocationImage;
+            }
             image.alt = location;
 
             const durationStr = (function IIFE(duration) {
@@ -46,8 +53,10 @@ function handleSubmit(event) {
                     return `${tripDuration} day `
             }(tripDuration));
 
-            document.getElementById('results').innerHTML = `${durationStr} trip to ${location} is ${daysUntilDeparture} days until departure. 
+            if (res.weatherData) {
+                document.getElementById('results').innerHTML = `${durationStr} trip to ${location} is ${daysUntilDeparture} days until departure. 
                                                            <br><br>Typical weather for then is: High: ${res.weatherData.max_temp} Low: ${res.weatherData.min_temp}`;
+            }
         })
 }
 
