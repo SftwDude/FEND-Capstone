@@ -45,7 +45,7 @@ app.get('/travelItineary', function (req, res) {
             console.log(resp.geonames);
 
             ({ lat, lng } = resp.geonames[0]);
-            GetWeather(lat, lng).then(resp => {
+            GetWeather(lat, lng, req.query.dDate, req.query.rDate).then(resp => {
                 const weatherData = resp.data[0];
                 GetPicture(req.query.location).then(resp => {
                     const destinationData = {
@@ -61,8 +61,18 @@ app.get('/travelItineary', function (req, res) {
         .catch(err => console.error(err));
 })
 
-async function GetWeather(lat, lng) {
-    let response = await fetch(`http://api.weatherbit.io/v2.0/normals?lat=${lat}&lon=${lng}&start_day=07-23&end_day=07-23&key=${process.env.API_KEY_WEATHERBIT}`);
+async function GetWeather(lat, lng, startDate, endDate) {
+    const sMonth = new Intl.DateTimeFormat('en', {month: '2-digit'}).format(new Date(startDate));
+    const sDay = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(new Date(startDate));
+
+    const eMonth = new Intl.DateTimeFormat('en', {month: '2-digit'}).format(new Date(endDate));
+    const eDay = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(new Date(endDate));
+
+    let response = await fetch(`http://api.weatherbit.io/v2.0/normals?lat=${lat}` +
+                                                                      `&lon=${lng}` +
+                                                                      `&start_day=${sMonth}-${sDay}` +
+                                                                      `&end_day=${eMonth}-${eDay}` +
+                                                                      `&key=${process.env.API_KEY_WEATHERBIT}`);
     let data = response.json();
     return data;
 }
