@@ -6,6 +6,10 @@ const Geonames = require('geonames.js')
 
 const fetch = require('node-fetch');
 
+const dotenv = require('dotenv');
+dotenv.config();
+const port = process.env.PORT || 8081;
+
 const app = express()
 
 app.use(express.static('dist'))
@@ -18,8 +22,8 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(port, function () {
+    console.log(`Example app listening on port ${port}!`)
 })
 
 app.get('/test', function (req, res) {
@@ -30,7 +34,7 @@ app.get('/travelItineary', function (req, res) {
     //console.log(`travelItineary called req.query.location =  ${req.query.location}`)
 
     const geonames = new Geonames({
-        username: 'SftwDude',
+        username: process.env.API_USERNAME_GEONAMES,
         lan: 'en',
         encoding: 'JSON'
     });
@@ -58,7 +62,7 @@ app.get('/travelItineary', function (req, res) {
 })
 
 async function GetWeather(lat, lng) {
-    let response = await fetch(`http://api.weatherbit.io/v2.0/normals?lat=${lat}&lon=${lng}&start_day=07-23&end_day=07-23&key=e52da5bc857747e08d31731e7ed5a834`);
+    let response = await fetch(`http://api.weatherbit.io/v2.0/normals?lat=${lat}&lon=${lng}&start_day=07-23&end_day=07-23&key=${process.env.API_KEY_WEATHERBIT}`);
     let data = response.json();
     return data;
 }
