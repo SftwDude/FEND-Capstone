@@ -1,38 +1,10 @@
-# Webpack Express Example App
+# Udacity FEND Travel App project
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
+The final project in the Front-End web developer couse is a travel app that uses all lessons learned during the course:
 
-If you are just starting this process, start from branch 0-initial-setup. Otherwise, switch to the appropriate numbered branches of this repo as needed. The branches are:
-- [0-initial-setup](https://github.com/udacity/fend-webpack-content/tree/0-initial-setup)
-- [1-install-webpack](https://github.com/udacity/fend-webpack-content/tree/1-install-webpack)
-- [2-add-webpack-entry](https://github.com/udacity/fend-webpack-content/tree/2-add-webpack-entry)
-- [3-webpack-output-and-loaders](https://github.com/udacity/fend-webpack-content/tree/3-webpack-output-and-loaders)
-- [4-webpack-plugins](https://github.com/udacity/fend-webpack-content/tree/4-webpack-plugins)
-- [5-webpack-mode](https://github.com/udacity/fend-webpack-content/tree/5-webpack-mode)
-- [6-webpack-for-convenience](https://github.com/udacity/fend-webpack-content/tree/6-webpack-for-convenience)
+- 1-CSS, Website Layout, Website Components
+- 2-Javascript & The DOM
+- 3-Web APIs and Asynchronous
+- 4-Build Tools and Single Page Web Apps
 
-Each branch in this project is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step is also roughly a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
-
-## What we will cover
-
-We will cover:
-
-- Webpack entry point
-- Webpack output and dist folder
-- Webpack Loaders
-- Webpack Plugins
-- Webpack Mode
-- Tools for convenient Webpack development
-
-## Get Up and Running
-
-Fork this repo, then clone the branch of your choice from your forked repo down to your computer:
-
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
-
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:8080, but you can of course edit that in server.js
+The travel app obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs. 

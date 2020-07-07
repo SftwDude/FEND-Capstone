@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Travel App</title>
 </head>
 
@@ -19,7 +21,7 @@
         <div>
             <img class=img-1 id="destImage" src="" alt="Saltillo Mexico Sunrise">
         </div>
-        <main class = main-container>
+        <main class=main-container>
             <!--
             <form class="form" onsubmit="return Client.handleSubmit(event)">
                 -->
@@ -50,17 +52,19 @@
 
         </menu>
         <footer>
-            <p id="footer">This is the footer</p>
+            <!-- Add font awesome icons -->
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
         </footer>
     </div>
 
     <script>
         //Check that service workers are supported
         if ("serviceWorker" in navigator) {
-           // Use the window load event to keep the page load performant
-           window.addEventListener("load", () => {
-               navigator.serviceWorker.register("/service-worker.js");
-           });
+            // Use the window load event to keep the page load performant
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service-worker.js");
+            });
         }
     </script>
 </body>
