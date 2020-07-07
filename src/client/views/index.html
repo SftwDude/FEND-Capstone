@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/styles.css">
+
     <title>Travel App</title>
 </head>
 
@@ -18,19 +18,48 @@
         </header>
 
         <div>
-            <img class=img-1 src="Saltillo Morning Sunrise.jpg" alt="Saltillo Mexico Sunrise" >
+            <img class=img-1 id="destImage" src="" alt="Saltillo Mexico Sunrise">
         </div>
         <main>
-            <p>main now is the time for all good men to come to the add of their country...the big brow fox jumped over the old women main</p>
+            <!--
+            <form class="form" onsubmit="return Client.handleSubmit(event)">
+                -->
+            <form>
+                <div class="form-input">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" name="destination" />
+                </div>
+                <div class="form-input">
+                    <label for="date">Departure Date:</label>
+                    <input type="date" id="date" name="date" />
+                </div>
+                <!--
+                    <button onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">Find Location</button>
+                -->
+                <button type="submit" id="submitTravel">Find Travel</button>
+            </form>
+            <div>
+                <p id="results"></p>
+            </div>
         </main>
 
         <menu>
 
         </menu>
         <footer>
-            <p>This is a footer</p>
+            <p id="footer">This is the footer</p>
         </footer>
     </div>
+
+    <script>
+        // Check that service workers are supported
+        //if ("serviceWorker" in navigator) {
+        //    // Use the window load event to keep the page load performant
+        //    window.addEventListener("load", () => {
+        //        navigator.serviceWorker.register("/service-worker.js");
+        //    });
+        //}
+    </script>
 </body>
 
 </html>
