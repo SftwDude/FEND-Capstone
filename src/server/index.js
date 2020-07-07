@@ -38,7 +38,7 @@ app.get('/travelItineary', function (req, res) {
         lan: 'en',
         encoding: 'JSON'
     });
-    // promise
+    
     let lat, lng;
     geonames.search({ q: req.query.location }) //get continents
         .then(resp => {
@@ -50,10 +50,6 @@ app.get('/travelItineary', function (req, res) {
                 GetWeather(lat, lng, req.query.dDate, req.query.rDate).then(resp => {
                     const weatherData = resp.data[0];
                     GetPicture(req.query.location).then(resp => {
-                        //const destinationData = {
-                        //    weatherData,
-                        //    image: resp.hits[0].largeImageURL
-                        //}
                         destinationData.weatherData = weatherData;
                         if (resp.hits[0])
                             destinationData.image = resp.hits[0].largeImageURL;
@@ -66,8 +62,6 @@ app.get('/travelItineary', function (req, res) {
                 destinationData.image = undefined;
                 res.json(destinationData);
             }
-            //res.send({ message: `lat:${lat} lng:${lng}` });
-
         })
         .catch(err => console.error(err));
 })
@@ -94,12 +88,11 @@ async function GetWeather(lat, lng, startDate, endDate) {
 
 async function GetPicture(location) {
     try {
-        let response = await fetch(`https://pixabay.com/api/?key=17363540-bc8ccf8d48d9ef026574066c8&q=${encodeURIComponent(location)}&image_type=photo`);
+        let response = await fetch(`https://pixabay.com/api/?key=${process.env.API_KEY_PIXABAY}&q=${encodeURIComponent(location)}&image_type=photo`);
         let data = response.json();
         return data;
     } catch (error) {
         console.log("GetPicture Error: ", error);
     }
-
 }
 
