@@ -6,7 +6,7 @@ The final project in the Front-End web developer couse is a travel app that uses
 - 3-Web APIs and Asynchronous
 - 4-Build Tools and Single Page Web Apps
 
-The travel app obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs. The travel app has <mark>additional functionality</mark> that takes a return date and displays the length of the trip.
+The travel app obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs. **The travel app has _additional functionality_ that takes a return date and displays the length of the trip.**
 
 ## Setup
 The app requires the use of an .env file located in the root of the applications. The .env file needs to contain the enviroment variables:
