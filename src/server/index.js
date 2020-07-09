@@ -38,7 +38,7 @@ app.get('/travelItineary', function (req, res) {
         lan: 'en',
         encoding: 'JSON'
     });
-    
+
     let lat, lng;
     geonames.search({ q: req.query.location }) //get continents
         .then(resp => {
@@ -52,10 +52,11 @@ app.get('/travelItineary', function (req, res) {
                     GetPicture(req.query.location).then(resp => {
                         destinationData.weatherData = weatherData;
                         if (resp.hits[0])
-                            destinationData.image = resp.hits[0].largeImageURL;
+                        destinationData.image = resp.hits[0].largeImageURL;
                         res.json(destinationData);
                     });
-                });
+                })
+                    .catch(error => console.error(error));
             }
             else {
                 destinationData.weatherData = undefined;
@@ -79,8 +80,14 @@ async function GetWeather(lat, lng, startDate, endDate) {
             `&start_day=${sMonth}-${sDay}` +
             `&end_day=${eMonth}-${eDay}` +
             `&key=${process.env.API_KEY_WEATHERBIT}`);
-        let data = response.json();
-        return data;
+        if (response.ok) {
+            let data = response.json();
+            return data;
+        }
+        else {
+            console.log('Network response from http://api.weatherbit.io was not ok');
+            throw new Error('Network response from http://api.weatherbit.io was not ok');
+        }
     } catch (error) {
         console.log("GetWeather Error: ", error);
     }
@@ -95,4 +102,5 @@ async function GetPicture(location) {
         console.log("GetPicture Error: ", error);
     }
 }
+
 

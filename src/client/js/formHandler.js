@@ -36,27 +36,27 @@ function handleSubmit(event) {
 
     fetch(`http://localhost:8081/travelItineary?location=${location}&dDate=${futureDeparture}&rDate=${futureReturn}`)
         .then(res => res.json())
-        .then(function (res) {
-            let image = document.getElementById('destImage');
-            if (res.image) {
-                image.src = res.image;
-            }
-            else {
-                image.src = unknownLocationImage;
-            }
-            image.alt = location;
+        .then(res => {
+                let image = document.getElementById('destImage');
+                if (res.image) {
+                    image.src = res.image;
+                }
+                else {
+                    image.src = unknownLocationImage;
+                }
+                image.alt = location;
 
-            const durationStr = (function IIFE(duration) {
-                if (duration == 0)
-                    return 'A day ';
-                else
-                    return `${tripDuration} day `
-            }(tripDuration));
+                const durationStr = (function IIFE(duration) {
+                    if (duration == 0)
+                        return 'A day ';
+                    else
+                        return `${tripDuration} day `
+                }(tripDuration));
 
-            if (res.weatherData) {
-                document.getElementById('results').innerHTML = `${durationStr} trip to ${location} is ${daysUntilDeparture} days until departure. 
+                if (res.weatherData) {
+                    document.getElementById('results').innerHTML = `${durationStr} trip to ${location} is ${daysUntilDeparture} days until departure. 
                                                            <br><br>Typical weather for then is: High: ${res.weatherData.max_temp} Low: ${res.weatherData.min_temp}`;
-            }
+                }
         })
 }
 
